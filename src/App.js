@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from "styled-components";
+import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
+import Home from "./pages/Home";
+import GlobalStyle from "./style/GlobalStyle";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="app">
+      <GlobalStyle />
+      <Navbar />
+      <SideBarStd />
+      <Home />
+    </Container>
   );
 }
 
 export default App;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SideBarStd = styled(Sidebar)`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+`;
