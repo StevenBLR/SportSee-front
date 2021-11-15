@@ -9,8 +9,10 @@ function App() {
     <Container className="app">
       <GlobalStyle />
       <Navbar />
-      <SideBarStd />
-      <Home />
+      <SideBarGroup>
+        <SideBarStd />
+        <Home />
+      </SideBarGroup>
     </Container>
   );
 }
@@ -20,6 +22,11 @@ export default App;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+`;
+
+const SideBarGroup = styled.div`
+  display: flex;
+  margin-left: 100px;
 `;
 
 const SideBarStd = styled(Sidebar)`
