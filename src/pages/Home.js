@@ -2,10 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { colors } from "../style/colors";
 import { dashBoard_sideBts } from "../utils/iconsGroups";
-
+import BarGraph from "../components/BarGraph";
 function Home() {
   //const sideButtons = [{title: "", subTitle: "", icon: }]
-
+  const userId = 12;
   return (
     <Container>
       <Header className="header">
@@ -16,7 +16,9 @@ function Home() {
       </Header>
       <Dashboard className="dashboard">
         <div className="dashboard__left-section">
-          <div className="weight"></div>
+          <div className="weight-chart">
+            <BarGraph userId={userId} />
+          </div>
           <div className="dashboard__more-data"></div>
         </div>
         <div className="dashboard__right-section">
@@ -71,6 +73,10 @@ const Dashboard = styled.div`
       width: 100%;
       height: 100%;
       background-color: blue;
+      .weight-chart {
+        height: 50%;
+        width: 100%;
+      }
     }
     &__right-section {
       display: flex;
