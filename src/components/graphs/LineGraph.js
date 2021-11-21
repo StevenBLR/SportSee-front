@@ -98,7 +98,11 @@ export default LineGraph;
 const ChartWrapper = styled.div`
   margin: 20px;
   display: flex;
-  width: 33%;
+  width: 100%;
   height: 100%;
   background-color: white;
+  display: flex;
+  p {
+    font-weight: bold;
+  }
 `;

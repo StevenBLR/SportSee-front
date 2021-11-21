@@ -68,15 +68,20 @@ function BarGraph(props) {
 export default BarGraph;
 
 const Container = styled(ResponsiveContainer)`
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
+  //box-sizing: border-box;
+  //display: flex;
+  //justify-content: center;
 `;
 
 const ChartWrapper = styled.div`
   margin: 20px;
-  display: flex;
-  //width: 50%;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
   height: 100%;
   background-color: white;
+  display: flex;
+  p {
+    font-weight: bold;
+  }
 `;

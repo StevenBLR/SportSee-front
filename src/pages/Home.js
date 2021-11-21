@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../style/colors";
 import { dashBoard_sideBts } from "../utils/iconsGroups";
-import BarGraph from "../components/graphs/BarGraph";
 import { getUserInfos } from "../routes/user";
 import LineGraph from "../components/graphs/LineGraph";
+import BarGraph from "../components/graphs/BarGraph";
+import RadarGraph from "../components/graphs/RadarGraph";
+import PieGraph from "../components/graphs/PieGraph";
 
 function Home() {
   //const sideButtons = [{title: "", subTitle: "", icon: }]
@@ -41,6 +43,8 @@ function Home() {
           </div>
           <div className="dashboard__more-data">
             <LineGraph userId={userId} />
+            <RadarGraph userId={userId} />
+            <PieGraph userId={userId} />
           </div>
         </div>
         <div className="dashboard__right-section">
