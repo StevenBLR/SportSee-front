@@ -74,7 +74,7 @@ function LineGraph(props) {
   }, [averageSession]);
 
   return (
-    <ChartWrapper>
+    <ChartWrapper className="chart">
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
@@ -96,9 +96,9 @@ function LineGraph(props) {
 export default LineGraph;
 
 const ChartWrapper = styled.div`
-  margin: 20px;
+  margin-right: 20px;
   display: flex;
-  width: 100%;
+  min-width: 33%;
   height: 100%;
   background-color: white;
   display: flex;

@@ -46,7 +46,7 @@ function BarGraph(props) {
   }
 
   return (
-    <ChartWrapper>
+    <ChartWrapper className="chart">
       {activity?.length === 0 ? (
         <p>Loading</p>
       ) : (
@@ -74,7 +74,6 @@ const Container = styled(ResponsiveContainer)`
 `;
 
 const ChartWrapper = styled.div`
-  margin: 20px;
   justify-content: center;
   align-items: center;
   width: 50%;

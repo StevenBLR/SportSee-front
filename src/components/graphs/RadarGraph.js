@@ -50,7 +50,7 @@ const data = [
 
 function RadarGraph() {
   return (
-    <ChartWrapper>
+    <ChartWrapper className="chart">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart cx="50%" cy="50%" outerRadius="80%" data={data}>
           <PolarGrid />
@@ -72,10 +72,10 @@ function RadarGraph() {
 export default RadarGraph;
 
 const ChartWrapper = styled.div`
-  margin: 20px;
+  margin-right: 20px;
   justify-content: center;
   align-items: center;
-  //width: 50%;
+  min-width: 33%;
   height: 100%;
   background-color: white;
   display: flex;

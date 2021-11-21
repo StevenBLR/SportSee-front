@@ -6,12 +6,12 @@ import { getUserInfos } from "../routes/user";
 import LineGraph from "../components/graphs/LineGraph";
 import BarGraph from "../components/graphs/BarGraph";
 import RadarGraph from "../components/graphs/RadarGraph";
-import PieGraph from "../components/graphs/PieGraph";
+// import PieGraph from "../components/graphs/PieGraph";
 
 function Home() {
   //const sideButtons = [{title: "", subTitle: "", icon: }]
   const [user, setUser] = useState({});
-  const userId = 12;
+  const userId = 18;
 
   useEffect(() => {
     getUserInfos(userId).then((res) => {
@@ -44,7 +44,7 @@ function Home() {
           <div className="dashboard__more-data">
             <LineGraph userId={userId} />
             <RadarGraph userId={userId} />
-            <PieGraph userId={userId} />
+            {/* <PieGraph userId={userId} /> */}
           </div>
         </div>
         <div className="dashboard__right-section">
@@ -100,12 +100,17 @@ const Dashboard = styled.div`
       height: 100%;
       background-color: blue;
       .weight-chart {
+        margin: 20px;
         height: 50%;
         width: 100%;
       }
       .dashboard__more-data {
+        margin: 20px;
         display: flex;
         height: 50%;
+        .chart {
+          flex: 1 1 auto;
+        }
       }
     }
     &__right-section {
