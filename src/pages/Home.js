@@ -1,29 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../style/colors";
 import { dashBoard_sideBts } from "../utils/iconsGroups";
-import BarGraph from "../components/BarGraph";
+import BarGraph from "../components/graphs/BarGraph";
+import { getUserInfos } from "../routes/user";
+import LineGraph from "../components/graphs/LineGraph";
+
 function Home() {
   //const sideButtons = [{title: "", subTitle: "", icon: }]
+  const [user, setUser] = useState({});
   const userId = 12;
+
+  useEffect(() => {
+    getUserInfos(userId).then((res) => {
+      const data = res.data.data;
+      console.log("User infos = ", data);
+      setUser(data);
+    });
+  }, []);
+
   return (
     <Container>
       <Header className="header">
-        <h1>
-          Bonjour <span className="header__name">Thomas</span>
-        </h1>
-        <h2>Féliciations ! Vous avez explosé vos objectifs hier 👏</h2>
+        {!user.id ? (
+          <p>Loading </p>
+        ) : (
+          <>
+            <h1>
+              Bonjour{" "}
+              <span className="header__name">{user.userInfos.firstName}</span>
+            </h1>
+            <h2>Féliciations ! Vous avez explosé vos objectifs hier 👏</h2>
+          </>
+        )}
       </Header>
       <Dashboard className="dashboard">
         <div className="dashboard__left-section">
           <div className="weight-chart">
             <BarGraph userId={userId} />
           </div>
-          <div className="dashboard__more-data"></div>
+          <div className="dashboard__more-data">
+            <LineGraph userId={userId} />
+          </div>
         </div>
         <div className="dashboard__right-section">
-          {dashBoard_sideBts.map((bt) => (
-            <div className="nutriments">
+          {dashBoard_sideBts.map((bt, i) => (
+            <div className="nutriments" key={bt.name}>
               <img src={bt.icon} alt={bt.name} />
               <div className="nutriments__infos">
                 <p className="nutriments__data">1,930 kCal</p>
@@ -76,6 +98,10 @@ const Dashboard = styled.div`
       .weight-chart {
         height: 50%;
         width: 100%;
+      }
+      .dashboard__more-data {
+        display: flex;
+        height: 50%;
       }
     }
     &__right-section {
