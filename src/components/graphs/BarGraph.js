@@ -10,7 +10,7 @@ import {
 } from "recharts";
 import styled from "styled-components";
 import { colors } from "../../style/colors";
-import { getUserActivity } from "../../routes/user";
+import { getUserActivity } from "../../datas/userData";
 
 /**
  * Displays user last activity's data
@@ -29,20 +29,20 @@ function BarGraph(props) {
       const data = res.data.data.sessions;
       setActivity(data);
     });
-  }, []);
+  }, [userId]);
 
   // Format data to populate graph
   useEffect(() => {
     if (activity.length > 0) formatData();
-  }, [activity]);
+  }, [activity, userId]);
 
   function formatData() {
-    let formattedAct = [];
+    let formatedDatas = [];
     activity.forEach((act, i) => {
       act["name"] = i + 1;
-      formattedAct.push(act);
+      formatedDatas.push(act);
     });
-    console.log("Activity Infos = ", formattedAct);
+    console.log("Activity Infos = ", formatedDatas);
   }
 
   return (
@@ -50,7 +50,7 @@ function BarGraph(props) {
       {activity?.length === 0 ? (
         <p>Loading</p>
       ) : (
-        <Container width="100%" height="100%" className="bar-charts">
+        <ResponsiveContainer width="100%" height="100%" className="bar-charts">
           <BarChart data={activity}>
             <XAxis dataKey="name" stroke="#8884d8" />
             {/* <YAxis /> */}
@@ -59,7 +59,7 @@ function BarGraph(props) {
             <Bar dataKey="kilogram" fill={colors.black} barSize={15} />
             <Bar dataKey="calories" fill={colors.red} barSize={15} />
           </BarChart>
-        </Container>
+        </ResponsiveContainer>
       )}
     </ChartWrapper>
   );
@@ -67,16 +67,10 @@ function BarGraph(props) {
 
 export default BarGraph;
 
-const Container = styled(ResponsiveContainer)`
-  //box-sizing: border-box;
-  //display: flex;
-  //justify-content: center;
-`;
-
 const ChartWrapper = styled.div`
   justify-content: center;
   align-items: center;
-  width: 50%;
+  width: 100%;
   height: 100%;
   background-color: white;
   display: flex;

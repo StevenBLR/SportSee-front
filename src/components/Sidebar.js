@@ -7,9 +7,11 @@ function Sidebar() {
   const copyright = "Copyright, SportSee 2020";
   return (
     <Container className="sidebar">
-      {sideBar_sideBarBts.map((bt) => (
-        <img src={bt.icon} alt={bt.name} />
-      ))}
+      <div className="sidebar__bts">
+        {sideBar_sideBarBts.map((bt) => (
+          <img src={bt.icon} alt={bt.name} />
+        ))}
+      </div>
       <p>{copyright}</p>
     </Container>
   );
@@ -22,11 +24,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  left: 0;
-  width: 100px; //clamp(70px, 10vw, 100px);
+  width: 7%;
+  min-width: 80px;
+  max-width: 100px;
   height: calc(100vh - 31px);
-  z-index: -1;
   background-color: ${colors.black};
   img {
     cursor: pointer;
@@ -43,5 +44,8 @@ const Container = styled.div`
     width: 200px;
     text-align: start;
     transform: rotate(-90deg);
+  }
+  .sidebar__bts {
+    margin-bottom: 100%;
   }
 `;

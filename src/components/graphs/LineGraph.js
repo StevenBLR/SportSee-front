@@ -9,8 +9,8 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import styled from "styled-components";
-import { getAverageSessions } from "../../routes/user";
-
+import { getAverageSessions } from "../../datas/userData";
+const daysInitial = ["L", "M", "M", "J", "V", "S", "D"];
 const data = [
   {
     name: "Page A",
@@ -60,35 +60,55 @@ function LineGraph(props) {
   const { userId } = props;
   const [averageSession, setAverageSession] = useState([]);
 
-  // Fetch user data
+  // Fetch user data ( Average sesions )
   useEffect(() => {
     getAverageSessions(userId).then((res) => {
       const data = res.data.data.sessions;
       setAverageSession(data);
     });
-  }, []);
+  }, [userId]);
 
   // Format data to populate graph
   useEffect(() => {
-    //if (averageSession.length > 0) formatData();
-  }, [averageSession]);
+    if (averageSession.length > 0) formatData();
+    console.log("Average sessions =", averageSession);
+  }, [averageSession, userId]);
+
+  function formatData() {
+    let formatedDatas = [];
+    averageSession.forEach((as, i) => {
+      as["name"] = daysInitial[i];
+      formatedDatas.push(as);
+    });
+    console.log("Activity Infos = ", formatedDatas);
+  }
 
   return (
     <ChartWrapper className="chart">
-      <ResponsiveContainer width="100%" height="100%">
-        <AreaChart
-          data={data}
-          margin={{
-            bottom: 50,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
+      {averageSession?.length === 0 ? (
+        <p>Loading</p>
+      ) : (
+        <ResponsiveContainer width="100%" height="80%">
+          <AreaChart
+            data={averageSession}
+            margin={{
+              bottom: 0,
+              top: 50,
+            }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
 
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-        </AreaChart>
-      </ResponsiveContainer>
+            <Tooltip />
+            <Area
+              type="monotone"
+              dataKey="sessionLength"
+              stroke="#8884d8"
+              fill="#8884d8"
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      )}
     </ChartWrapper>
   );
 }

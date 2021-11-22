@@ -22,11 +22,13 @@ export default App;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  max-height: 100vh;
 `;
 
 const SideBarGroup = styled.div`
   display: flex;
-  margin-left: 100px;
+  width: 100vw;
 `;
 
 const SideBarStd = styled(Sidebar)`

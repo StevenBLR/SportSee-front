@@ -1,5 +1,5 @@
 import axios from "axios";
-import { serverUrl } from "../utils/apiInfos";
+import { serverUrl } from "./apiInfos";
 
 const axInstance = axios.create({
   baseURL: serverUrl,
@@ -17,5 +17,10 @@ export function getUserActivity(userId) {
 
 export function getAverageSessions(userId) {
   const path = `/user/${userId}/average-sessions`;
+  return axInstance.get(path);
+}
+
+export function getPerformance(userId) {
+  const path = `/user/${userId}/performance`;
   return axInstance.get(path);
 }

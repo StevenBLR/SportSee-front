@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { colors } from "../style/colors";
 import { dashBoard_sideBts } from "../utils/iconsGroups";
-import { getUserInfos } from "../routes/user";
+import { getUserInfos } from "../datas/userData";
 import LineGraph from "../components/graphs/LineGraph";
 import BarGraph from "../components/graphs/BarGraph";
 import RadarGraph from "../components/graphs/RadarGraph";
-// import PieGraph from "../components/graphs/PieGraph";
+import PieGraph from "../components/graphs/PieGraph";
 
 function Home() {
   //const sideButtons = [{title: "", subTitle: "", icon: }]
@@ -22,7 +22,7 @@ function Home() {
   }, []);
 
   return (
-    <Container>
+    <Container className="container">
       <Header className="header">
         {!user.id ? (
           <p>Loading </p>
@@ -44,7 +44,7 @@ function Home() {
           <div className="dashboard__more-data">
             <LineGraph userId={userId} />
             <RadarGraph userId={userId} />
-            {/* <PieGraph userId={userId} /> */}
+            <PieGraph userId={userId} />
           </div>
         </div>
         <div className="dashboard__right-section">
@@ -90,15 +90,14 @@ const Header = styled.div`
 
 const Dashboard = styled.div`
   display: flex;
-  background-color: palegreen;
   width: 100%;
   height: 60vh;
 
   .dashboard {
     &__left-section {
-      width: 100%;
+      width: 75%;
       height: 100%;
-      background-color: blue;
+      //background-color: blue;
       .weight-chart {
         margin: 20px;
         height: 50%;
@@ -109,19 +108,26 @@ const Dashboard = styled.div`
         display: flex;
         height: 50%;
         .chart {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           flex: 1 1 auto;
         }
       }
     }
     &__right-section {
       display: flex;
+      //margin: 20px;
+      margin-left: 40px;
+      margin-right: 20px;
+      margin-top: 20px;
       flex-direction: column;
+      justify-content: space-between;
       width: clamp(400px, 20vw, 740px);
-      background-color: purple;
+      //background-color: purple;
       .nutriments {
         display: flex;
         align-items: center;
-        margin: 20px;
         border-radius: 5px;
         background-color: ${colors.lightGray};
         img {

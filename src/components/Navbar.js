@@ -29,6 +29,7 @@ const Container = styled.div`
     cursor: pointer;
   }
   button {
+    cursor: pointer;
     font-size: clamp(17px, 2vw, 20px);
     border: none;
     margin-right: 40px;
