@@ -91,14 +91,15 @@ const Header = styled.div`
 const Dashboard = styled.div`
   display: flex;
   width: 100%;
+  height: 60vh;
 
   .dashboard {
     &__left-section {
+      padding: 20px;
       width: 75%;
       height: 100%;
       //background-color: blue;
       .weight-chart {
-        margin: 20px;
         height: 50%;
         width: 100%;
       }
@@ -116,11 +117,8 @@ const Dashboard = styled.div`
     }
     &__right-section {
       display: flex;
-      padding: 20px;
-      //margin: 20px;
-      /* margin-left: 40px;
-      margin-right: 20px;
-      margin-top: 20px; */
+      padding-top: 20px;
+      height: 100%;
       flex-direction: column;
       justify-content: space-between;
       width: clamp(400px, 20vw, 740px);
