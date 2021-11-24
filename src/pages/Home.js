@@ -91,7 +91,6 @@ const Header = styled.div`
 const Dashboard = styled.div`
   display: flex;
   width: 100%;
-  height: 60vh;
 
   .dashboard {
     &__left-section {
@@ -117,10 +116,11 @@ const Dashboard = styled.div`
     }
     &__right-section {
       display: flex;
+      padding: 20px;
       //margin: 20px;
-      margin-left: 40px;
+      /* margin-left: 40px;
       margin-right: 20px;
-      margin-top: 20px;
+      margin-top: 20px; */
       flex-direction: column;
       justify-content: space-between;
       width: clamp(400px, 20vw, 740px);
