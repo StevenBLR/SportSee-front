@@ -118,7 +118,7 @@ export default LineGraph;
 const ChartWrapper = styled.div`
   margin-right: 20px;
   display: flex;
-  min-width: 33%;
+  width: 33%;
   height: 100%;
   background-color: white;
   display: flex;

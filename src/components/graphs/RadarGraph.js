@@ -109,7 +109,8 @@ const ChartWrapper = styled.div`
   margin-right: 20px;
   justify-content: center;
   align-items: center;
-  min-width: 33%;
+  width: 33%;
+  //max-width: 33%;
   height: 100%;
   background-color: white;
   display: flex;
