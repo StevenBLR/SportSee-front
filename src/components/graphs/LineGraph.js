@@ -10,6 +10,7 @@ import {
 } from "recharts";
 import styled from "styled-components";
 import { getAverageSessions } from "../../datas/userData";
+import { colors } from "../../style/colors";
 const daysInitial = ["L", "M", "M", "J", "V", "S", "D"];
 const data = [
   {
@@ -88,26 +89,29 @@ function LineGraph(props) {
       {averageSession?.length === 0 ? (
         <p>Loading</p>
       ) : (
-        <ResponsiveContainer width="100%" height="80%">
-          <AreaChart
-            data={averageSession}
-            margin={{
-              bottom: 0,
-              top: 50,
-            }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+        <>
+          <p className="chart__label">Durée moyenne des sessions</p>
+          {/* // <ResponsiveContainer width="100%" height="80%"> */}
+          <ResponsiveContainer height="80%">
+            <AreaChart
+              data={averageSession}
+              margin={{
+                bottom: 0,
+                top: 50,
+              }}
+            >
+              <XAxis dataKey="name" />
 
-            <Tooltip />
-            <Area
-              type="monotone"
-              dataKey="sessionLength"
-              stroke="#8884d8"
-              fill="#8884d8"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
+              <Tooltip />
+              <Area
+                type="monotone"
+                dataKey="sessionLength"
+                stroke="white"
+                fill={colors.red}
+              />
+            </AreaChart>
+          </ResponsiveContainer>
+        </>
       )}
     </ChartWrapper>
   );
@@ -116,13 +120,29 @@ function LineGraph(props) {
 export default LineGraph;
 
 const ChartWrapper = styled.div`
-  margin-right: 20px;
   display: flex;
-  width: 33%;
+  flex-direction: column;
+  position: relative;
   height: 100%;
-  background-color: white;
+  background-color: ${colors.red};
   display: flex;
+  tspan {
+    color: white;
+  }
   p {
     font-weight: bold;
+  }
+  .chart__label {
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    z-index: 1;
+    color: white;
+    opacity: 0.5;
+    font-size: 0.8rem;
+    margin-inline: 20px;
+    margin-block: unset;
+    text-align: left;
+    width: 60%;
   }
 `;

@@ -50,16 +50,33 @@ function BarGraph(props) {
       {activity?.length === 0 ? (
         <p>Loading</p>
       ) : (
-        <ResponsiveContainer width="100%" height="100%" className="bar-charts">
-          <BarChart data={activity}>
-            <XAxis dataKey="name" stroke="#8884d8" />
-            {/* <YAxis /> */}
-            <Tooltip />
-            <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <Bar dataKey="kilogram" fill={colors.black} barSize={15} />
-            <Bar dataKey="calories" fill={colors.red} barSize={15} />
-          </BarChart>
-        </ResponsiveContainer>
+        <>
+          <p className="chart__label">Activité quotidienne</p>
+          <div className="chart__legend">
+            <div className="weight">
+              <p className="dot"></p>
+              <p>Poids (kg)</p>
+            </div>
+            <div className="calories">
+              <p className="dot"></p>
+              <p>Calories brûlées (kCal)</p>
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height="80%" className="bar-charts">
+            <BarChart data={activity}>
+              <XAxis dataKey="name" stroke="#8884d8" />
+              {/* <YAxis /> */}
+              <Tooltip />
+              <CartesianGrid
+                stroke="#ccc"
+                strokeDasharray="5 5"
+                horizontal={true}
+              />
+              <Bar dataKey="kilogram" fill={colors.black} barSize={15} />
+              <Bar dataKey="calories" fill={colors.red} barSize={15} />
+            </BarChart>
+          </ResponsiveContainer>
+        </>
       )}
     </ChartWrapper>
   );
@@ -68,13 +85,63 @@ function BarGraph(props) {
 export default BarGraph;
 
 const ChartWrapper = styled.div`
+  padding: 20px;
+  position: relative;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: white;
+  width: 95%;
+  height: 85%;
+  background-color: ${colors.lightGray};
   display: flex;
   p {
     font-weight: bold;
+  }
+  .chart__label {
+    position: absolute;
+    top: 15px;
+    left: 2%;
+    z-index: 1;
+    color: black;
+    font-size: 1rem;
+    margin-inline: 20px;
+    margin-block: unset;
+    text-align: left;
+    width: 40%;
+  }
+  .chart__legend {
+    display: flex;
+    flex-wrap: wrap;
+    z-index: 1;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    div {
+      display: flex;
+      flex-direction: row;
+      margin-inline: 5px;
+    }
+    p {
+      color: ${colors.darkGray};
+      margin-inline: 10px;
+      z-index: 1;
+
+      &::before {
+        content: "";
+        display: block;
+        background-color: red;
+      }
+    }
+    .dot {
+      align-self: center;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      border-radius: 100%;
+    }
+    .weight {
+      .dot {
+        background-color: black;
+      }
+    }
   }
 `;

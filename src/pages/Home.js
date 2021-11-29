@@ -106,9 +106,12 @@ const Dashboard = styled.div`
       .dashboard__more-data {
         margin: 20px;
         display: flex;
+        justify-content: space-between;
         height: 50%;
         .chart {
           display: flex;
+          width: 20%;
+          border-radius: 10px;
           justify-content: center;
           align-items: center;
           flex: 1 1 auto;
@@ -121,7 +124,7 @@ const Dashboard = styled.div`
       height: 100%;
       flex-direction: column;
       justify-content: space-between;
-      width: clamp(400px, 20vw, 740px);
+      width: clamp(250px, 20vw, 740px);
       //background-color: purple;
       .nutriments {
         display: flex;

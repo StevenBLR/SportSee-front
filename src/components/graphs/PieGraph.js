@@ -1,11 +1,10 @@
 import React, { PureComponent } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import styled from "styled-components";
+import { colors } from "../../style/colors";
 const data = [
   { name: "Group A", value: 400 },
   { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
 ];
 
 const renderActiveShape = (props) => {
@@ -68,7 +67,7 @@ const renderActiveShape = (props) => {
   );
 };
 
-export default class Example extends PureComponent {
+export default class PieGraph extends PureComponent {
   static demoUrl =
     "https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si";
 
@@ -84,7 +83,15 @@ export default class Example extends PureComponent {
 
   render() {
     return (
-      <ChartWrapper>
+      <ChartWrapper className="chart">
+        <p className="chart__label">
+          Score
+          {/* <span>12% &nbsp;</span> de votre objectif */}
+        </p>
+        <div className="chart__target">
+          <p className="nb">12%</p>
+          <p className="txt">de votre objectif</p>
+        </div>
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -93,9 +100,9 @@ export default class Example extends PureComponent {
               data={data}
               cx="50%"
               cy="50%"
-              innerRadius={60}
-              outerRadius={80}
-              fill="#8884d8"
+              innerRadius={75}
+              outerRadius={90}
+              fill={colors.red}
               dataKey="value"
               onMouseEnter={this.onPieEnter}
             />
@@ -107,14 +114,51 @@ export default class Example extends PureComponent {
 }
 
 const ChartWrapper = styled.div`
-  margin-right: 20px;
+  display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
-  width: 33%;
   height: 100%;
-  background-color: white;
-  display: flex;
+  background-color: ${colors.lightGray};
+
   p {
     font-weight: bold;
+  }
+  .chart__label {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    z-index: 1;
+    color: black;
+    font-size: 0.8rem;
+    margin-inline: 20px;
+    margin-block: unset;
+    text-align: left;
+    width: 60%;
+  }
+  .chart__target {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    color: black;
+    font-size: 0.8rem;
+    margin-inline: 20px;
+    margin-block: unset;
+    text-align: center;
+    width: 40%;
+    .nb {
+      color: black;
+      font-size: 1.75rem;
+      margin-block: unset;
+    }
+    .txt {
+      opacity: 0.5;
+      margin: unset;
+    }
   }
 `;

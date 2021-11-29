@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { colors } from "../../style/colors";
 import {
   Radar,
   RadarChart,
@@ -84,16 +85,15 @@ function RadarGraph(props) {
   return (
     <ChartWrapper className="chart">
       {performance && (
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer width="50%" height="50%">
           <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance}>
             <PolarGrid />
             <PolarAngleAxis dataKey="kind" />
-            <PolarRadiusAxis tickCount={5} />
             <Radar
               name="Performance graph"
               dataKey="value"
               stroke="#8884d8"
-              fill="#8884d8"
+              fill={`${colors.red}`}
               fillOpacity={0.6}
             />
           </RadarChart>
@@ -106,13 +106,14 @@ function RadarGraph(props) {
 export default RadarGraph;
 
 const ChartWrapper = styled.div`
-  margin-right: 20px;
   justify-content: center;
   align-items: center;
-  width: 33%;
-  //max-width: 33%;
   height: 100%;
-  background-color: white;
+  background-color: ${"white"};
+  tspan {
+    color: red;
+    font-weight: bold;
+  }
   display: flex;
   p {
     font-weight: bold;
