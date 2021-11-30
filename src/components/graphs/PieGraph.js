@@ -1,11 +1,7 @@
-import React, { PureComponent } from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import styled from "styled-components";
 import { colors } from "../../style/colors";
-const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-];
 
 const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
@@ -31,87 +27,67 @@ const renderActiveShape = (props) => {
   const ex = mx + (cos >= 0 ? 1 : -1) * 22;
   const ey = my;
   const textAnchor = cos >= 0 ? "start" : "end";
-
-  return (
-    <ChartWrapper>
-      <g>
-        <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-          {payload.name}
-        </text>
-        <Sector
-          cx={cx}
-          cy={cy}
-          innerRadius={innerRadius}
-          outerRadius={outerRadius}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          fill={fill}
-        />
-        <text
-          x={ex + (cos >= 0 ? 1 : -1) * 12}
-          y={ey}
-          textAnchor={textAnchor}
-          fill="#333"
-        >{`PV ${value}`}</text>
-        <text
-          x={ex + (cos >= 0 ? 1 : -1) * 12}
-          y={ey}
-          dy={18}
-          textAnchor={textAnchor}
-          fill="#999"
-        >
-          {`(Rate ${(percent * 100).toFixed(2)}%)`}
-        </text>
-      </g>
-    </ChartWrapper>
-  );
 };
 
-export default class PieGraph extends PureComponent {
-  static demoUrl =
-    "https://codesandbox.io/s/pie-chart-with-customized-active-shape-y93si";
+function PieGraph(props) {
+  const [activeIndex, setActiveIndex] = useState();
+  const [score, setScore] = useState(0);
+  const { userScore } = props;
 
-  state = {
-    activeIndex: 0,
-  };
+  useEffect(() => {
+    setActiveIndex(0);
+  }, []);
 
-  onPieEnter = (_, index) => {
-    this.setState({
-      activeIndex: index,
-    });
-  };
+  //
+  useEffect(() => {
+    setScore(userScore * 100);
+    console.log(("Score = ", userScore * 100));
+  }, [userScore]);
 
-  render() {
-    return (
-      <ChartWrapper className="chart">
-        <p className="chart__label">
-          Score
-          {/* <span>12% &nbsp;</span> de votre objectif */}
-        </p>
-        <div className="chart__target">
-          <p className="nb">12%</p>
-          <p className="txt">de votre objectif</p>
-        </div>
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              activeIndex={this.state.activeIndex}
-              activeShape={renderActiveShape}
-              data={data}
-              cx="50%"
-              cy="50%"
-              innerRadius={75}
-              outerRadius={90}
-              fill={colors.red}
-              dataKey="value"
-              onMouseEnter={this.onPieEnter}
-            />
-          </PieChart>
-        </ResponsiveContainer>
-      </ChartWrapper>
-    );
-  }
+  const data = [
+    { name: "score", value: userScore },
+    { name: "void", value: 0.1 },
+  ];
+
+  // onPieEnter = (_, index) => {
+  //   this.setState({
+  //     activeIndex: index,
+  //   });
+  // };
+
+  return (
+    <ChartWrapper className="chart">
+      {!score ? (
+        <p>Loading </p>
+      ) : (
+        <>
+          <p className="chart__label">Score</p>
+          <div className="chart__target">
+            <p className="nb">{score}%</p>
+            <p className="txt">de votre objectif</p>
+          </div>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
+              <Pie
+                activeIndex={activeIndex}
+                activeShape={renderActiveShape}
+                data={data}
+                cx="50%"
+                cy="50%"
+                innerRadius={60}
+                outerRadius={70}
+                fill={colors.red}
+                dataKey="value"
+                //onMouseEnter={this.onPieEnter}
+              />
+            </PieChart>
+          </ResponsiveContainer>
+        </>
+      )}
+    </ChartWrapper>
+  );
 }
+export default PieGraph;
 
 const ChartWrapper = styled.div`
   display: flex;

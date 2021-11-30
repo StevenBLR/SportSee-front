@@ -12,6 +12,12 @@ function Home() {
   //const sideButtons = [{title: "", subTitle: "", icon: }]
   const [user, setUser] = useState({});
   const userId = 18;
+  const keyDatas = [
+    "calorieCount",
+    "proteinCount",
+    "carbohydrateCount",
+    "lipidCount",
+  ];
 
   useEffect(() => {
     getUserInfos(userId).then((res) => {
@@ -44,7 +50,7 @@ function Home() {
           <div className="dashboard__more-data">
             <LineGraph userId={userId} />
             <RadarGraph userId={userId} />
-            <PieGraph userId={userId} />
+            <PieGraph userId={userId} userScore={user.todayScore} />
           </div>
         </div>
         <div className="dashboard__right-section">
@@ -52,7 +58,10 @@ function Home() {
             <div className="nutriments" key={bt.name}>
               <img src={bt.icon} alt={bt.name} />
               <div className="nutriments__infos">
-                <p className="nutriments__data">1,930 kCal</p>
+                <p className="nutriments__data">
+                  {user.keyData &&
+                    `${user?.keyData[keyDatas[i]]} ${i === 0 ? "kCal" : "g"}`}
+                </p>
                 <p className="nutriments__name">{bt.name}</p>
               </div>
             </div>
