@@ -3,40 +3,10 @@ import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import styled from "styled-components";
 import { colors } from "../../style/colors";
 
-const renderActiveShape = (props) => {
-  const RADIAN = Math.PI / 180;
-  const {
-    cx,
-    cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-    startAngle,
-    endAngle,
-    fill,
-    payload,
-    percent,
-    value,
-  } = props;
-  const sin = Math.sin(-RADIAN * midAngle);
-  const cos = Math.cos(-RADIAN * midAngle);
-  const sx = cx + (outerRadius + 10) * cos;
-  const sy = cy + (outerRadius + 10) * sin;
-  const mx = cx + (outerRadius + 30) * cos;
-  const my = cy + (outerRadius + 30) * sin;
-  const ex = mx + (cos >= 0 ? 1 : -1) * 22;
-  const ey = my;
-  const textAnchor = cos >= 0 ? "start" : "end";
-};
-
 function PieGraph(props) {
   const [activeIndex, setActiveIndex] = useState();
   const [score, setScore] = useState(0);
   const { userScore } = props;
-
-  useEffect(() => {
-    setActiveIndex(0);
-  }, []);
 
   //
   useEffect(() => {
@@ -44,10 +14,7 @@ function PieGraph(props) {
     console.log(("Score = ", userScore * 100));
   }, [userScore]);
 
-  const data = [
-    { name: "score", value: userScore },
-    { name: "void", value: 0.1 },
-  ];
+  const data = [{ name: "score", value: userScore }];
 
   // onPieEnter = (_, index) => {
   //   this.setState({
@@ -69,8 +36,8 @@ function PieGraph(props) {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                activeIndex={activeIndex}
-                activeShape={renderActiveShape}
+                startAngle={90}
+                endAngle={360 * userScore + 90}
                 data={data}
                 cx="50%"
                 cy="50%"
