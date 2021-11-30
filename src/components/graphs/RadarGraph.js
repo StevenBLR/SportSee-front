@@ -69,7 +69,7 @@ function RadarGraph(props) {
         perf.fullMark = 200;
         perfs.push(perf);
       });
-      console.log("PErfs = ", perfs);
+      console.log("Perfs = ", perfs);
 
       // 2 - Store data to useStates
       setPerformance(perfs);
