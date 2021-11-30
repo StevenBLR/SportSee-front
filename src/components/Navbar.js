@@ -9,7 +9,7 @@ function Navbar() {
     <Container className="navbar">
       <img src={logo} alt="logo" />
       {buttons.map((bt) => (
-        <button>{bt}</button>
+        <button key={`${bt}_bt`}>{bt}</button>
       ))}
     </Container>
   );

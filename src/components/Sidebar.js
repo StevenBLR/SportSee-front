@@ -9,7 +9,7 @@ function Sidebar() {
     <Container className="sidebar">
       <div className="sidebar__bts">
         {sideBar_sideBarBts.map((bt) => (
-          <img src={bt.icon} alt={bt.name} />
+          <img src={bt.icon} alt={bt.name} key={`${bt.name}_bt`} />
         ))}
       </div>
       <p>{copyright}</p>
