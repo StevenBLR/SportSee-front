@@ -12,6 +12,7 @@ import styled from "styled-components";
 import { colors } from "../../style/colors";
 import { getUserActivity } from "../../datas/userData";
 import PropTypes from "prop-types";
+import CustomTooltip from "../CustomTooltip";
 
 BarGraph.propTypes = {
   userId: PropTypes.number,
@@ -71,7 +72,7 @@ function BarGraph(props) {
             <BarChart data={activity}>
               <XAxis dataKey="name" stroke="#8884d8" />
               {/* <YAxis /> */}
-              <Tooltip />
+              <Tooltip content={<CustomTooltip type="barGraph" />} />
               <CartesianGrid
                 stroke="#ccc"
                 strokeDasharray="5 5"

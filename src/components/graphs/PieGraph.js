@@ -102,7 +102,7 @@ const ChartWrapper = styled.div`
     margin-inline: 20px;
     margin-block: unset;
     text-align: center;
-    width: 40%;
+    width: 80px;
     .nb {
       color: black;
       font-size: 1.75rem;

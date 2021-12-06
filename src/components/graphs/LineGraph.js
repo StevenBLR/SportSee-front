@@ -12,6 +12,7 @@ import styled from "styled-components";
 import { getAverageSessions } from "../../datas/userData";
 import { colors } from "../../style/colors";
 import PropTypes from "prop-types";
+import CustomTooltip from "../CustomTooltip";
 
 LineGraph.propTypes = {
   userId: PropTypes.number,
@@ -70,7 +71,7 @@ function LineGraph(props) {
             >
               <XAxis dataKey="name" />
 
-              <Tooltip />
+              <Tooltip content={<CustomTooltip type="lineGraph" />} />
               <Area
                 type="monotone"
                 dataKey="sessionLength"
