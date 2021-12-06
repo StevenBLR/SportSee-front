@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -13,6 +13,7 @@ import { colors } from "../../style/colors";
 import { getUserActivity } from "../../datas/userData";
 import PropTypes from "prop-types";
 import CustomTooltip from "../CustomTooltip";
+import CustomTicks from "../CustomTicks";
 
 BarGraph.propTypes = {
   userId: PropTypes.number,
@@ -70,7 +71,11 @@ function BarGraph(props) {
           </div>
           <ResponsiveContainer width="100%" height="80%" className="bar-charts">
             <BarChart data={activity}>
-              <XAxis dataKey="name" stroke="#8884d8" />
+              <XAxis
+                dataKey="name"
+                stroke="#8884d8"
+                //tick={<CustomTicks type="barGraph" />}
+              />
               {/* <YAxis /> */}
               <Tooltip content={<CustomTooltip type="barGraph" />} />
               <CartesianGrid

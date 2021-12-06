@@ -36,7 +36,7 @@ const BarTooltipContainer = styled.div`
   align-items: center;
   background-color: ${colors.red};
   color: white;
-  padding: 15px;
+  padding: 10px;
   p {
     font-size: 0.8rem;
   }
