@@ -7,9 +7,12 @@ import LineGraph from "../components/graphs/LineGraph";
 import BarGraph from "../components/graphs/BarGraph";
 import RadarGraph from "../components/graphs/RadarGraph";
 import PieGraph from "../components/graphs/PieGraph";
+import PropTypes from "prop-types";
 
+/**
+ * Home page component
+ */
 function Home() {
-  //const sideButtons = [{title: "", subTitle: "", icon: }]
   const [user, setUser] = useState({});
   const userId = 18;
   const keyDatas = [
@@ -50,7 +53,7 @@ function Home() {
           <div className="dashboard__more-data">
             <LineGraph userId={userId} />
             <RadarGraph userId={userId} />
-            <PieGraph userId={userId} userScore={user.todayScore} />
+            <PieGraph userScore={user.todayScore} />
           </div>
         </div>
         <div className="dashboard__right-section">
@@ -74,10 +77,13 @@ function Home() {
 
 export default Home;
 
+Home.propTypes = {
+  title: PropTypes.string.isRequired,
+};
+
 const Container = styled.div`
-  //display: flex;
   margin: 20px;
-  width: 90vw; //clamp(10px, 90vw, 1200px);
+  width: 90vw;
 `;
 
 const Header = styled.div`

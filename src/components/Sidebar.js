@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { colors } from "../style/colors";
 import { sideBar_sideBarBts } from "../utils/iconsGroups";
 
+/**
+ * Display Sidebar
+ */
 function Sidebar() {
   const copyright = "Copyright, SportSee 2020";
   return (

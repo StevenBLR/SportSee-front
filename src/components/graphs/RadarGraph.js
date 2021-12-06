@@ -10,45 +10,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { getPerformance } from "../../datas/userData";
-const data = [
-  {
-    subject: "Math",
-    A: 120,
-    B: 110,
-    fullMark: 150,
-  },
-  {
-    subject: "Chinese",
-    A: 98,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "English",
-    A: 86,
-    B: 130,
-    fullMark: 150,
-  },
-  {
-    subject: "Geography",
-    A: 99,
-    B: 100,
-    fullMark: 150,
-  },
-  {
-    subject: "Physics",
-    A: 85,
-    B: 90,
-    fullMark: 150,
-  },
-  {
-    subject: "History",
-    A: 65,
-    B: 85,
-    fullMark: 150,
-  },
-];
+import PropTypes from "prop-types";
 
+RadarGraph.propTypes = {
+  userId: PropTypes.number,
+};
+
+/**
+ * Displays user last activity's data
+ * @param {Number} userId Id used to fetch data on DB
+ */
 function RadarGraph(props) {
   const { userId } = props;
   const [performance, setPerformance] = useState([]);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -11,13 +11,15 @@ import {
 import styled from "styled-components";
 import { colors } from "../../style/colors";
 import { getUserActivity } from "../../datas/userData";
+import PropTypes from "prop-types";
+
+BarGraph.propTypes = {
+  userId: PropTypes.number,
+};
 
 /**
  * Displays user last activity's data
  * @param {Number} userId Id used to fetch data on DB
- *
- *   <BarGraph userId={userId} />
- *
  */
 function BarGraph(props) {
   const { userId } = props;
@@ -36,6 +38,9 @@ function BarGraph(props) {
     if (activity.length > 0) formatData();
   }, [activity, userId]);
 
+  /**
+   * Format data to fit graph with graph input requirements
+   */
   function formatData() {
     let formatedDatas = [];
     activity.forEach((act, i) => {

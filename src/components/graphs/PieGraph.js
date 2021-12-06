@@ -2,7 +2,16 @@ import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Sector, ResponsiveContainer } from "recharts";
 import styled from "styled-components";
 import { colors } from "../../style/colors";
+import PropTypes from "prop-types";
 
+PieGraph.propTypes = {
+  userScore: PropTypes.number,
+};
+
+/**
+ * Displays user last activity's data
+ * @param {Number} userScore Current user score
+ */
 function PieGraph(props) {
   const [activeIndex, setActiveIndex] = useState();
   const [score, setScore] = useState(0);

@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { colors } from "../style/colors";
 import logo from "../imgs/logo.svg";
 
+/**
+ * Display NavBar
+ */
 function Navbar() {
   const buttons = ["Accueil", "Profil", "Réglage", "Communauté"];
   return (
