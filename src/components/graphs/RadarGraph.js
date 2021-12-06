@@ -85,7 +85,7 @@ function RadarGraph(props) {
   return (
     <ChartWrapper className="chart">
       {performance && (
-        <ResponsiveContainer width="50%" height="50%">
+        <ResponsiveContainer width="100%" height="100%">
           <RadarChart cx="50%" cy="50%" outerRadius="80%" data={performance}>
             <PolarGrid />
             <PolarAngleAxis dataKey="kind" />
