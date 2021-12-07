@@ -69,7 +69,7 @@ function LineGraph(props) {
                 top: 50,
               }}
             >
-              <XAxis dataKey="name" />
+              <XAxis dataKey="name" height={40} tickMargin={10} />
 
               <Tooltip content={<CustomTooltip type="lineGraph" />} />
               <Area

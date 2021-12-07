@@ -74,6 +74,8 @@ function BarGraph(props) {
               <XAxis
                 dataKey="name"
                 stroke="#8884d8"
+                height={20}
+                tickMargin={8}
                 //tick={<CustomTicks type="barGraph" />}
               />
               {/* <YAxis /> */}
